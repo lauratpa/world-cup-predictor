@@ -70,6 +70,39 @@ ALTER SEQUENCE public.countries_id_seq OWNED BY public.countries.id;
 
 
 --
+-- Name: match_predictions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.match_predictions (
+    id bigint NOT NULL,
+    match_id bigint,
+    host_team_goals integer,
+    away_team_goals integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: match_predictions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.match_predictions_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: match_predictions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.match_predictions_id_seq OWNED BY public.match_predictions.id;
+
+
+--
 -- Name: matches; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -121,6 +154,13 @@ ALTER TABLE ONLY public.countries ALTER COLUMN id SET DEFAULT nextval('public.co
 
 
 --
+-- Name: match_predictions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.match_predictions ALTER COLUMN id SET DEFAULT nextval('public.match_predictions_id_seq'::regclass);
+
+
+--
 -- Name: matches id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -141,6 +181,14 @@ ALTER TABLE ONLY public.ar_internal_metadata
 
 ALTER TABLE ONLY public.countries
     ADD CONSTRAINT countries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: match_predictions match_predictions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.match_predictions
+    ADD CONSTRAINT match_predictions_pkey PRIMARY KEY (id);
 
 
 --
@@ -183,6 +231,14 @@ ALTER TABLE ONLY public.matches
 
 
 --
+-- Name: match_predictions fk_rails_b872f36908; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.match_predictions
+    ADD CONSTRAINT fk_rails_b872f36908 FOREIGN KEY (match_id) REFERENCES public.matches(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -191,6 +247,7 @@ SET search_path TO "$user", public;
 INSERT INTO "schema_migrations" (version) VALUES
 ('20190308145819'),
 ('20190308151146'),
-('20190308161201');
+('20190308161201'),
+('20190308162201');
 
 
