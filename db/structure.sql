@@ -160,6 +160,13 @@ ALTER TABLE ONLY public.schema_migrations
 
 
 --
+-- Name: index_countries_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_countries_on_name ON public.countries USING btree (name);
+
+
+--
 -- Name: matches fk_rails_3da816dd49; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -183,6 +190,7 @@ SET search_path TO "$user", public;
 
 INSERT INTO "schema_migrations" (version) VALUES
 ('20190308145819'),
-('20190308151146');
+('20190308151146'),
+('20190308161201');
 
 
