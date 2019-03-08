@@ -108,8 +108,8 @@ ALTER SEQUENCE public.match_predictions_id_seq OWNED BY public.match_predictions
 
 CREATE TABLE public.matches (
     id bigint NOT NULL,
-    host_team_id integer,
-    away_team_id integer,
+    host_team_id bigint,
+    away_team_id bigint,
     host_team_goals integer,
     away_team_goals integer,
     kick_off timestamp without time zone NOT NULL,
@@ -248,6 +248,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190308145819'),
 ('20190308151146'),
 ('20190308161201'),
-('20190308162201');
+('20190308162201'),
+('20190308163045');
 
 
