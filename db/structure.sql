@@ -76,7 +76,7 @@ ALTER SEQUENCE public.countries_id_seq OWNED BY public.countries.id;
 CREATE TABLE public.match_predictions (
     id bigint NOT NULL,
     match_id bigint,
-    host_team_goals integer,
+    home_team_goals integer,
     away_team_goals integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -108,9 +108,9 @@ ALTER SEQUENCE public.match_predictions_id_seq OWNED BY public.match_predictions
 
 CREATE TABLE public.matches (
     id bigint NOT NULL,
-    host_team_id bigint,
+    home_team_id bigint,
     away_team_id bigint,
-    host_team_goals integer,
+    home_team_goals integer,
     away_team_goals integer,
     kick_off timestamp without time zone NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -219,7 +219,7 @@ CREATE UNIQUE INDEX index_countries_on_name ON public.countries USING btree (nam
 --
 
 ALTER TABLE ONLY public.matches
-    ADD CONSTRAINT fk_rails_3da816dd49 FOREIGN KEY (host_team_id) REFERENCES public.countries(id);
+    ADD CONSTRAINT fk_rails_3da816dd49 FOREIGN KEY (home_team_id) REFERENCES public.countries(id);
 
 
 --
@@ -249,6 +249,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190308151146'),
 ('20190308161201'),
 ('20190308162201'),
-('20190308163045');
+('20190308163045'),
+('20190308184106'),
+('20190308202254');
 
 

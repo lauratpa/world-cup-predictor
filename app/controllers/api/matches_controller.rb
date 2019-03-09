@@ -1,11 +1,11 @@
 class Api::MatchesController < ApplicationController
-  respond_to :json
-
   def index
-    respond_with Match.order(:kick_off)
+    render json: MatchSerializer.new(
+      Match.order(:kick_off), include: [:home_team, :away_team]
+    ).serialized_json
   end
 
   def show
-    respond_with Match.find(params[:id])
+    render json: Match.find(params[:id])
   end
 end
