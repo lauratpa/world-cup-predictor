@@ -1,41 +1,35 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
+import { Container, Card, Header } from "semantic-ui-react";
+import MatchItem from "./MatchItem";
 
 class MatchList extends React.Component {
-  findCountry(id) {
-    const { countries } = this.props;
-
-    return countries.find(country => country.id == id)
-  }
-
   renderMatches() {
-    const { matches } = this.props;
+    const { matches, countries } = this.props;
 
     return matches.map(match => (
-      <li key={match.id}>
-        {this.findCountry(match.relationships.homeTeam.data.id).attributes.name}
-        {' - '}
-        {this.findCountry(match.relationships.awayTeam.data.id).attributes.name}
-      </li>
+      <MatchItem match={match} countries={countries} />
     ));
   }
 
   render() {
     return (
-      <section>
-        <h2>Matches</h2>
-        <ul>{this.renderMatches()}</ul>
-      </section>
+      <Container text>
+        <Header>Matches</Header>
+        <Card.Group>{this.renderMatches()}</Card.Group>
+      </Container>
     );
   }
 }
 
 MatchList.propTypes = {
   matches: PropTypes.arrayOf(PropTypes.object),
+  countries: PropTypes.arrayOf(PropTypes.object)
 };
 
 MatchList.defaultProps = {
   matches: [],
+  countries: []
 };
 
 export default MatchList;

@@ -46,7 +46,8 @@ CREATE TABLE public.countries (
     id bigint NOT NULL,
     name text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    code character varying
 );
 
 
@@ -251,6 +252,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190308162201'),
 ('20190308163045'),
 ('20190308184106'),
-('20190308202254');
+('20190308202254'),
+('20190315141216');
 
 
