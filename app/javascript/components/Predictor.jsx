@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
+import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
 import Title from "./Title";
 import MatchList from "./MatchList";
+import HeaderMenu from "./HeaderMenu";
 
 class Predictor extends React.Component {
   constructor(props) {
@@ -30,15 +32,26 @@ class Predictor extends React.Component {
 
   render() {
     const { matches, countries } = this.state;
+    const { currentUser, onUpdateCurrentUser } = this.props;
+
     if (matches === null) return null;
 
     return (
       <Container>
+        <HeaderMenu
+          currentUser={currentUser}
+          onUpdateCurrentUser={onUpdateCurrentUser}
+        />
         <Title />
         <MatchList matches={matches} countries={countries} />
       </Container>
     );
   }
 }
+
+Predictor.propTypes = {
+  currentUser: PropTypes.string.isRequired,
+  onUpdateCurrentUser: PropTypes.func.isRequired
+};
 
 export default Predictor;
