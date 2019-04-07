@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  respond_to :html, :json
+  respond_to :html
 
-  protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception
 end
