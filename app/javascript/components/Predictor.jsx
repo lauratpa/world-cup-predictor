@@ -7,14 +7,10 @@ import MatchList from "./MatchList";
 import HeaderMenu from "./HeaderMenu";
 
 class Predictor extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      matches: null,
-      countries: null
-    };
-  }
+  state = {
+    matches: null,
+    countries: null
+  };
 
   componentDidMount() {
     axios
@@ -32,16 +28,13 @@ class Predictor extends React.Component {
 
   render() {
     const { matches, countries } = this.state;
-    const { currentUser, onUpdateCurrentUser } = this.props;
+    const { email, onUpdateCurrentUser } = this.props;
 
     if (matches === null) return null;
 
     return (
       <Container>
-        <HeaderMenu
-          currentUser={currentUser}
-          onUpdateCurrentUser={onUpdateCurrentUser}
-        />
+        <HeaderMenu email={email} onUpdateCurrentUser={onUpdateCurrentUser} />
         <Title />
         <MatchList matches={matches} countries={countries} />
       </Container>
@@ -50,7 +43,7 @@ class Predictor extends React.Component {
 }
 
 Predictor.propTypes = {
-  currentUser: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   onUpdateCurrentUser: PropTypes.func.isRequired
 };
 

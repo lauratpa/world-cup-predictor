@@ -13,16 +13,15 @@ class Login extends React.Component {
     const { onUpdateCurrentUser } = this.props;
 
     axios
-      .post("/users/sign_in.json", {
+      .post("/api/login", {
         user: {
           email,
           password
         }
       })
       .then(response => {
-        console.log(response);
-        if (response.status === 201) {
-          onUpdateCurrentUser(email);
+        if (response.status === 200) {
+          onUpdateCurrentUser(email, response.data.auth_token);
         }
       })
       .catch(error => {
@@ -39,7 +38,7 @@ class Login extends React.Component {
   };
 
   render() {
-    const { email, password, passwordConfirmation } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div>

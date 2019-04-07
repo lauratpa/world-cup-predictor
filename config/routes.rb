@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :matches, only: %i[index show]
 
-    post 'authenticate', to: 'authentication#authenticate'
+    post 'login', to: 'authentication#create'
+    delete 'logout', to: 'authentication#destroy'
   end
 end

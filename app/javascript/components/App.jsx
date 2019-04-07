@@ -1,53 +1,38 @@
 import React from "react";
-import axios from "axios";
 import Predictor from "./Predictor";
 import Welcome from "./Welcome";
 
+const accessTokenName = "abc";
+
 class App extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    accessToken: JSON.parse(localStorage.getItem(accessTokenName)).accessToken,
+    email: JSON.parse(localStorage.getItem(accessTokenName)).email
+  };
 
-    this.state = {
-      currentUser: null
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("/api/current_user", {})
-      .then(response => {
-        console.log(response);
-
-        if (response.data) {
-          this.setState({
-            currentUser: response.data.email
-          });
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  handleUpdateCurrentUser = email => {
-    this.setState({
-      currentUser: email
-    });
+  handleUpdateCurrentUser = (email, accessToken) => {
+    localStorage.setItem(
+      accessTokenName,
+      JSON.stringify({ email, accessToken })
+    );
+    this.setState({ email });
+    this.setState({ accessToken });
   };
 
   render() {
-    const { currentUser } = this.state;
+    const { accessToken, email } = this.state;
 
-    if (currentUser) {
+    if (accessToken) {
       return (
         <div>
           <Predictor
-            currentUser={currentUser}
+            email={email}
             onUpdateCurrentUser={this.handleUpdateCurrentUser}
           />
         </div>
       );
     }
+
     return (
       <div>
         <Welcome onUpdateCurrentUser={this.handleUpdateCurrentUser} />

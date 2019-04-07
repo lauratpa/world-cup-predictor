@@ -7,10 +7,10 @@ class Logout extends React.Component {
     const { onUpdateCurrentUser } = this.props;
 
     axios
-      .delete("/users/sign_out.json", {})
+      .delete("/api/logout", {})
       .then(response => {
-        if (response.status === 204) {
-          onUpdateCurrentUser(null);
+        if (response.status === 200) {
+          onUpdateCurrentUser(null, null);
         }
       })
       .catch(error => {
