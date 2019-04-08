@@ -22,7 +22,7 @@ class App extends React.Component {
   render() {
     const { accessToken, email } = this.state;
 
-    if (accessToken) {
+    if (accessToken && email) {
       return (
         <div>
           <Predictor

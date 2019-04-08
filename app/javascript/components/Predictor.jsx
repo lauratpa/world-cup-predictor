@@ -14,7 +14,11 @@ class Predictor extends React.Component {
 
   componentDidMount() {
     axios
-      .get("/api/matches.json")
+      .get("/api/matches", {
+        headers: {
+          Authorization: JSON.parse(localStorage.getItem("abc")).accessToken
+        }
+      })
       .then(response =>
         this.setState({
           matches: response.data.data,

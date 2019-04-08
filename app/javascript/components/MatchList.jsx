@@ -8,7 +8,7 @@ class MatchList extends React.Component {
     const { matches, countries } = this.props;
 
     return matches.map(match => (
-      <MatchItem match={match} countries={countries} />
+      <MatchItem key={match.id} match={match} countries={countries} />
     ));
   }
 

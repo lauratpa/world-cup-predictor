@@ -1,4 +1,4 @@
-class Api::MatchesController < ActionController::API
+class Api::MatchesController < ApiController
   def index
     render json: MatchSerializer.new(
       Match.order(:kick_off), include: [:home_team, :away_team]

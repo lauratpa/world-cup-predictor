@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Input, Card, Flag, Icon, Grid } from "semantic-ui-react";
+import { Input, Card, Icon, Grid, Image } from "semantic-ui-react";
+import "./MatchContent.css";
 
 const MatchContent = ({ homeTeam, awayTeam }) => (
   <Card.Content>
@@ -8,19 +9,23 @@ const MatchContent = ({ homeTeam, awayTeam }) => (
       <Grid.Row>
         <Grid.Column width={4}>
           {homeTeam.attributes.name}
-          <Flag name={homeTeam.attributes.code} />
+          <Image
+            src={`/img/flags/${homeTeam.attributes.code}.svg`}
+            floated="right"
+            avatar
+          />
         </Grid.Column>
-        <Grid.Column width={2}>
-          <Input fluid type="number" min={0} max={99} />
-        </Grid.Column>
-        <Grid.Column width={1}>
-          <Icon fitted name="futbol" />
-        </Grid.Column>
-        <Grid.Column width={2}>
-          <Input fluid type="number" min={0} max={99} />
+        <Grid.Column width={5}>
+          <Input type="number" min={0} max={99} />
+          <Icon className="score-dash" fitted name="minus" />
+          <Input type="number" min={0} max={99} />
         </Grid.Column>
         <Grid.Column width={4}>
-          <Flag name={awayTeam.attributes.code} />
+          <Image
+            src={`/img/flags/${awayTeam.attributes.code}.svg`}
+            floated="left"
+            avatar
+          />
           {awayTeam.attributes.name}
         </Grid.Column>
       </Grid.Row>
