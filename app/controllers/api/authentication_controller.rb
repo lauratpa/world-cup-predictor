@@ -1,7 +1,5 @@
 module Api
-  class AuthenticationController < ApiController
-    skip_before_action :authenticate_request
-
+  class AuthenticationController < ActionController::API
     def create
       command = AuthenticateUser.call(user_params[:email], user_params[:password])
 

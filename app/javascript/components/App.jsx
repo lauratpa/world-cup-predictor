@@ -6,21 +6,18 @@ const accessTokenName = "abc";
 
 class App extends React.Component {
   state = {
-    accessToken: JSON.parse(localStorage.getItem(accessTokenName)).accessToken,
-    email: JSON.parse(localStorage.getItem(accessTokenName)).email
+    storage: JSON.parse(localStorage.getItem(accessTokenName)) || {}
   };
 
   handleUpdateCurrentUser = (email, accessToken) => {
-    localStorage.setItem(
-      accessTokenName,
-      JSON.stringify({ email, accessToken })
-    );
-    this.setState({ email });
-    this.setState({ accessToken });
+    const newStorage = { email, accessToken };
+
+    localStorage.setItem(accessTokenName, JSON.stringify(newStorage));
+    this.setState({ storage: newStorage });
   };
 
   render() {
-    const { accessToken, email } = this.state;
+    const { accessToken, email } = this.state.storage;
 
     if (accessToken && email) {
       return (
