@@ -37,11 +37,13 @@ class Predictor extends React.Component {
     if (matches === null) return null;
 
     return (
-      <Container>
+      <div>
         <HeaderMenu email={email} onUpdateCurrentUser={onUpdateCurrentUser} />
-        <Title />
-        <MatchList matches={matches} countries={countries} />
-      </Container>
+        <Container>
+          <Title />
+          <MatchList matches={matches} countries={countries} />
+        </Container>
+      </div>
     );
   }
 }

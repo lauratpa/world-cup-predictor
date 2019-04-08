@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { Button } from "semantic-ui-react";
 
 class Logout extends React.Component {
   handleLogout = () => {
@@ -20,11 +21,9 @@ class Logout extends React.Component {
 
   render() {
     return (
-      <div>
-        <button type="submit" onClick={this.handleLogout}>
-          Logout
-        </button>
-      </div>
+      <Button type="submit" onClick={this.handleLogout}>
+        Logout
+      </Button>
     );
   }
 }
