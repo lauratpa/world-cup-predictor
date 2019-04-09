@@ -8,9 +8,9 @@ const MatchContent = ({ homeTeam, awayTeam }) => (
     <Grid textAlign="center" columns={7}>
       <Grid.Row>
         <Grid.Column width={4}>
-          {homeTeam.attributes.name}
+          {homeTeam.name}
           <Image
-            src={`/img/flags/${homeTeam.attributes.code}.svg`}
+            src={`/img/flags/${homeTeam.code}.svg`}
             floated="right"
             avatar
           />
@@ -22,11 +22,11 @@ const MatchContent = ({ homeTeam, awayTeam }) => (
         </Grid.Column>
         <Grid.Column width={4}>
           <Image
-            src={`/img/flags/${awayTeam.attributes.code}.svg`}
+            src={`/img/flags/${awayTeam.code}.svg`}
             floated="left"
             avatar
           />
-          {awayTeam.attributes.name}
+          {awayTeam.name}
         </Grid.Column>
       </Grid.Row>
     </Grid>
@@ -34,8 +34,16 @@ const MatchContent = ({ homeTeam, awayTeam }) => (
 );
 
 MatchContent.propTypes = {
-  homeTeam: PropTypes.shape({ id: PropTypes.string }).isRequired,
-  awayTeam: PropTypes.shape({ id: PropTypes.string }).isRequired
+  homeTeam: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired
+  }).isRequired,
+  awayTeam: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    name: PropTypes.string.isRequired,
+    code: PropTypes.string.isRequired
+  }).isRequired
 };
 
 export default MatchContent;

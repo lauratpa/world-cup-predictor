@@ -5,11 +5,9 @@ import MatchItem from "./MatchItem";
 
 class MatchList extends React.Component {
   renderMatches() {
-    const { matches, countries } = this.props;
+    const { matches } = this.props;
 
-    return matches.map(match => (
-      <MatchItem key={match.id} match={match} countries={countries} />
-    ));
+    return matches.map(match => <MatchItem key={match.id} match={match} />);
   }
 
   render() {
@@ -23,13 +21,11 @@ class MatchList extends React.Component {
 }
 
 MatchList.propTypes = {
-  matches: PropTypes.arrayOf(PropTypes.object),
-  countries: PropTypes.arrayOf(PropTypes.object)
+  matches: PropTypes.arrayOf(PropTypes.object)
 };
 
 MatchList.defaultProps = {
-  matches: [],
-  countries: []
+  matches: []
 };
 
 export default MatchList;

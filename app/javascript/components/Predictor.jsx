@@ -2,35 +2,36 @@ import React from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
+import Kitsu from "kitsu";
 import MatchList from "./MatchList";
 import HeaderMenu from "./HeaderMenu";
 
 class Predictor extends React.Component {
   state = {
-    matches: null,
-    countries: null
+    matches: null
   };
 
   componentDidMount() {
-    axios
-      .get("/api/matches", {
-        headers: {
-          Authorization: JSON.parse(localStorage.getItem("abc")).accessToken
-        }
+    const api = new Kitsu({
+      baseURL: "http://localhost:3000"
+    });
+
+    api.headers.Authorization = JSON.parse(
+      localStorage.getItem("abc")
+    ).accessToken;
+
+    api
+      .get("/api/matches")
+      .then(response => {
+        this.setState({ matches: response.data });
       })
-      .then(response =>
-        this.setState({
-          matches: response.data.data,
-          countries: response.data.included
-        })
-      )
       .catch(error => {
         console.log(error);
       });
   }
 
   render() {
-    const { matches, countries } = this.state;
+    const { matches } = this.state;
     const { email, onUpdateCurrentUser } = this.props;
 
     if (matches === null) return null;
@@ -39,7 +40,7 @@ class Predictor extends React.Component {
       <div>
         <HeaderMenu email={email} onUpdateCurrentUser={onUpdateCurrentUser} />
         <Container>
-          <MatchList matches={matches} countries={countries} />
+          <MatchList matches={matches} />
         </Container>
       </div>
     );
