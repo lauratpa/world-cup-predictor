@@ -2,7 +2,7 @@ class Api::MatchPredictionsController < ApiController
   def create
     match_prediction = MatchPrediction.create!(attributes.merge(user_id: current_user.id))
     render json: MatchPredictionSerializer.new(match_prediction).serialized_json,
-      status: :created
+           status: :created
   end
 
   private

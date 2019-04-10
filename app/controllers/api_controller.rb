@@ -1,10 +1,10 @@
-class ApiController < ActionController::API 
+class ApiController < ActionController::API
   before_action :authenticate_request
 
   private
 
   def authenticate_request
-    render json: { error: 'Not Authorized' }, status: 401 unless current_user
+    render json: {error: "Not Authorized"}, status: 401 unless current_user
   end
 
   def current_user
