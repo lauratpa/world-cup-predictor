@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
 import Kitsu from "kitsu";

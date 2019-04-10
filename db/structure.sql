@@ -66,7 +66,8 @@ CREATE TABLE public.match_predictions (
     home_team_goals integer,
     away_team_goals integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_id bigint
 );
 
 
@@ -250,6 +251,14 @@ CREATE UNIQUE INDEX index_countries_on_name ON public.countries USING btree (nam
 
 
 --
+-- Name: match_predictions fk_rails_3a1a5bea14; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.match_predictions
+    ADD CONSTRAINT fk_rails_3a1a5bea14 FOREIGN KEY (user_id) REFERENCES public.users(id);
+
+
+--
 -- Name: matches fk_rails_3da816dd49; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -291,6 +300,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190329151024'),
 ('20190330173930'),
 ('20190407082444'),
-('20190407082839');
+('20190407082839'),
+('20190407185703');
 
 

@@ -10,7 +10,7 @@ const MatchItem = props => {
   return (
     <Card fluid key={match.id}>
       <MatchHeader kickOff={match.kickOff} />
-      <MatchContent homeTeam={match.homeTeam} awayTeam={match.awayTeam} />
+      <MatchContent match={match} />
     </Card>
   );
 };
