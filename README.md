@@ -13,3 +13,7 @@ Create database and set database url
 
 Deploy
 `eb deploy env-name`
+
+### Other
+
+Flags by courtesy of <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
