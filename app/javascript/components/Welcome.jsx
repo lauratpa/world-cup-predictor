@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Container } from "semantic-ui-react";
-// import SignUp from "./SignUp";
+import SignUp from "./SignUp";
 import Login from "./Login";
 
 const Welcome = props => {
@@ -10,7 +10,7 @@ const Welcome = props => {
   return (
     <Container>
       <h1>Welcome</h1>
-      {/* <SignUp onUpdateCurrentUser={this.props.onUpdateCurrentUser} /> */}
+      <SignUp onUpdateCurrentUser={onUpdateCurrentUser} />
       <Login onUpdateCurrentUser={onUpdateCurrentUser} />
     </Container>
   );

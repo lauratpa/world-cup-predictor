@@ -20,7 +20,7 @@ class Login extends React.Component {
         }
       })
       .then(response => {
-        if (response.status === 200) {
+        if (response.status === 201) {
           onUpdateCurrentUser(email, response.data.auth_token);
         }
       })

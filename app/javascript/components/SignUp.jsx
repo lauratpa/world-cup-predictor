@@ -14,7 +14,7 @@ class SignUp extends React.Component {
     const { onUpdateCurrentUser } = this.props;
 
     axios
-      .post("/users.json", {
+      .post("/api/users", {
         user: {
           email,
           password,
@@ -23,7 +23,7 @@ class SignUp extends React.Component {
       })
       .then(response => {
         if (response.status === 201) {
-          onUpdateCurrentUser(email);
+          onUpdateCurrentUser(email, response.data.auth_token);
         }
       })
       .catch(error => {
