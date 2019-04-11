@@ -1,24 +1,15 @@
-# README
+### Deploy
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Deploy with eb cli https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html
 
-Things you may want to cover:
+Set `RAILS_MASTER_KEY` to what's in your config/master.key
+`eb setenv RAILS_MASTER_KEY=xxxxx`
 
-* Ruby version
+Set static files
+`RAILS_SERVE_STATIC_FILES = enabled`
 
-* System dependencies
+Create database and set database url
+`DATABASE_URL = postgres://user:password@endpoint:port/database`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Deploy
+`eb deploy env-name`
