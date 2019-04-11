@@ -259,11 +259,11 @@ ALTER TABLE ONLY public.match_predictions
 
 
 --
--- Name: matches fk_rails_3da816dd49; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: matches fk_rails_4aed6bdf0d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.matches
-    ADD CONSTRAINT fk_rails_3da816dd49 FOREIGN KEY (home_team_id) REFERENCES public.countries(id);
+    ADD CONSTRAINT fk_rails_4aed6bdf0d FOREIGN KEY (home_team_id) REFERENCES public.countries(id);
 
 
 --
@@ -294,11 +294,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190308161201'),
 ('20190308162201'),
 ('20190308163045'),
-('20190308184106'),
-('20190308202254'),
 ('20190315141216'),
 ('20190329151024'),
-('20190330173930'),
 ('20190407082444'),
 ('20190407082839'),
 ('20190407185703');
