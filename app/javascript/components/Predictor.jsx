@@ -25,7 +25,11 @@ class Predictor extends React.Component {
         this.setState({ matches: response.data });
       })
       .catch(error => {
-        console.log(error);
+        if (error.response.status === 401) {
+          const { email, onUpdateCurrentUser } = this.props;
+
+          onUpdateCurrentUser(email, null);
+        }
       });
   }
 
