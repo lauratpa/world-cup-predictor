@@ -18,27 +18,34 @@ canada       = Country.find_or_create_by!(name: "Canada", code: "ca")
 cameroon     = Country.find_or_create_by!(name: "Cameroon", code: "cm")
 
 # Real games
-# Match.find_or_create_by!(home_team: france, away_team: south_korea, kick_off: "2019-06-07 18:00:00 +1")
-# Match.find_or_create_by!(home_team: germany, away_team: china, kick_off: "2019-06-08 15:00:00 +1")
-# Match.find_or_create_by!(home_team: spain, away_team: south_africa, kick_off: "2019-06-08 18:00:00 +1")
-# Match.find_or_create_by!(home_team: norway, away_team: nigeria, kick_off: "2019-06-08 21:00:00 +1")
-# Match.find_or_create_by!(home_team: australia, away_team: italy, kick_off: "2019-06-09 13:00:00 +1")
-# Match.find_or_create_by!(home_team: brazil, away_team: jamaica, kick_off: "2019-06-09 15:30:00 +1")
-# Match.find_or_create_by!(home_team: england, away_team: scotland, kick_off: "2019-06-09 18:00:00 +1")
-# Match.find_or_create_by!(home_team: argentina, away_team: japan, kick_off: "2019-06-10 18:00:00 +1")
-# Match.find_or_create_by!(home_team: canada, away_team: cameroon, kick_off: "2019-06-10 21:00:00 +1")
+Match.find_or_create_by!(home_team: france, away_team: south_korea, kick_off: "2019-06-07 18:00:00 +1")
+Match.find_or_create_by!(home_team: germany, away_team: china, kick_off: "2019-06-08 15:00:00 +1")
+Match.find_or_create_by!(home_team: spain, away_team: south_africa, kick_off: "2019-06-08 18:00:00 +1")
+Match.find_or_create_by!(home_team: norway, away_team: nigeria, kick_off: "2019-06-08 21:00:00 +1")
+Match.find_or_create_by!(home_team: australia, away_team: italy, kick_off: "2019-06-09 13:00:00 +1")
+Match.find_or_create_by!(home_team: brazil, away_team: jamaica, kick_off: "2019-06-09 15:30:00 +1")
+Match.find_or_create_by!(home_team: england, away_team: scotland, kick_off: "2019-06-09 18:00:00 +1")
+Match.find_or_create_by!(home_team: argentina, away_team: japan, kick_off: "2019-06-10 18:00:00 +1")
+Match.find_or_create_by!(home_team: canada, away_team: cameroon, kick_off: "2019-06-10 21:00:00 +1")
 
 # Dev games
+countries = Country.all
 now = Time.now.beginning_of_hour
+time_range = ((now - 2.days).to_i..(now + 2.days).to_i).to_a
 
-Match.find_or_create_by!(home_team: france, away_team: south_korea, kick_off: now - 2.days)
-Match.find_or_create_by!(home_team: germany, away_team: china, kick_off: now - 10.hours)
-Match.find_or_create_by!(home_team: spain, away_team: south_africa, kick_off: now)
-Match.find_or_create_by!(home_team: norway, away_team: nigeria, kick_off: now + 5.minutes)
-Match.find_or_create_by!(home_team: australia, away_team: italy, kick_off: now + 15.minutes)
-Match.find_or_create_by!(home_team: brazil, away_team: jamaica, kick_off: now + 30.minutes)
-Match.find_or_create_by!(home_team: england, away_team: scotland, kick_off: now + 45.minutes)
-Match.find_or_create_by!(home_team: argentina, away_team: japan, kick_off: now + 60.minutes)
-Match.find_or_create_by!(home_team: canada, away_team: cameroon, kick_off: now + 70.minutes)
+10.times do |i|
+  home_team, away_team = countries.sample(2)
+  kick_off = Time.at(time_range.sample)
+
+  home_team_goals, away_team_goals = [rand(0..10), rand(0..10)] if kick_off < now
+
+  Match.find_or_create_by!(
+    home_team: home_team,
+    home_team_goals: home_team_goals,
+    away_team: away_team,
+    away_team_goals: away_team_goals,
+    kick_off: kick_off
+  )
+end
 
 User.create!(email: "example@example.com", password: "12345", password_confirmation: "12345")
