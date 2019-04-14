@@ -14,6 +14,7 @@ class Login extends React.Component {
 
     axios
       .post("/api/login", {
+        withCredentials: true,
         user: {
           email,
           password
@@ -21,7 +22,8 @@ class Login extends React.Component {
       })
       .then(response => {
         if (response.status === 201) {
-          onUpdateCurrentUser(email, response.data.auth_token);
+          console.log(response);
+          onUpdateCurrentUser(response.data.name);
         }
       })
       .catch(error => {

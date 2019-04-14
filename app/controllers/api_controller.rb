@@ -1,4 +1,5 @@
 class ApiController < ActionController::API
+  include ::ActionController::Cookies
   before_action :authenticate_request
 
   private
@@ -8,6 +9,6 @@ class ApiController < ActionController::API
   end
 
   def current_user
-    @current_user ||= AuthorizeApiRequest.call(request.headers).result
+    @current_user ||= AuthorizeApiRequest.call(cookies[:jwt]).result
   end
 end

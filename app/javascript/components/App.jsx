@@ -10,8 +10,8 @@ class App extends React.Component {
     storage: JSON.parse(localStorage.getItem(accessTokenName)) || {}
   };
 
-  handleUpdateCurrentUser = (email, accessToken) => {
-    const newStorage = { email, accessToken };
+  handleUpdateCurrentUser = name => {
+    const newStorage = { name };
 
     localStorage.setItem(accessTokenName, JSON.stringify(newStorage));
     this.setState({ storage: newStorage });
@@ -19,29 +19,21 @@ class App extends React.Component {
 
   render() {
     const { storage } = this.state;
-    const { accessToken, email } = storage;
+    const { name } = storage;
 
-    if (accessToken && email) {
+    if (name) {
       return (
         <div>
           <Predictor
-            email={email}
+            email={name}
             onUpdateCurrentUser={this.handleUpdateCurrentUser}
           />
         </div>
       );
     }
 
-    let warning;
-    if (accessToken || email) {
-      warning = (
-        <Message warning>You have been logged out. Please login again.</Message>
-      );
-    }
-
     return (
       <div>
-        {warning}
         <Welcome onUpdateCurrentUser={this.handleUpdateCurrentUser} />
       </div>
     );

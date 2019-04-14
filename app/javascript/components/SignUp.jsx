@@ -4,18 +4,20 @@ import axios from "axios";
 
 class SignUp extends React.Component {
   state = {
+    name: "",
     email: "",
     password: "",
     passwordConfirmation: ""
   };
 
   handleSignup = () => {
-    const { email, password, passwordConfirmation } = this.state;
+    const { name, email, password, passwordConfirmation } = this.state;
     const { onUpdateCurrentUser } = this.props;
 
     axios
       .post("/api/users", {
         user: {
+          name,
           email,
           password,
           password_confirmation: passwordConfirmation
@@ -23,12 +25,16 @@ class SignUp extends React.Component {
       })
       .then(response => {
         if (response.status === 201) {
-          onUpdateCurrentUser(email, response.data.auth_token);
+          onUpdateCurrentUser(response.data.name);
         }
       })
       .catch(error => {
         console.log(error);
       });
+  };
+
+  handleNameChange = e => {
+    this.setState({ name: e.target.value });
   };
 
   handleEmailChange = e => {
@@ -44,11 +50,17 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { email, password, passwordConfirmation } = this.state;
+    const { name, email, password, passwordConfirmation } = this.state;
 
     return (
       <div>
         <h2>Signup</h2>
+        <input
+          type="text"
+          value={name}
+          placeholder="name"
+          onChange={this.handleNameChange}
+        />
         <input
           type="text"
           value={email}
