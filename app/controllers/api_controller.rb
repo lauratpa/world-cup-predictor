@@ -9,6 +9,6 @@ class ApiController < ActionController::API
   end
 
   def current_user
-    @current_user ||= AuthorizeApiRequest.call(cookies[:jwt]).result
+    @current_user ||= AuthorizeApiRequest.call(cookies.signed[:jwt]).result
   end
 end

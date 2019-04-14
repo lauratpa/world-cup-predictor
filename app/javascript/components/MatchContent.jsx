@@ -24,8 +24,8 @@ class MatchContent extends React.Component {
       match,
       homeTeam,
       awayTeam,
-      homeTeamGoals: homeTeamGoals === undefined ? "" : homeTeamGoals,
-      awayTeamGoals: awayTeamGoals === undefined ? "" : awayTeamGoals,
+      homeTeamGoals: homeTeamGoals === null ? "" : homeTeamGoals,
+      awayTeamGoals: awayTeamGoals === null ? "" : awayTeamGoals,
       showSubmit: false
     };
   }
@@ -40,24 +40,16 @@ class MatchContent extends React.Component {
     const { match, homeTeamGoals, awayTeamGoals } = this.state;
 
     axios
-      .post(
-        "/api/match_predictions",
-        {
-          data: {
-            type: "prediction",
-            attributes: {
-              home_team_goals: homeTeamGoals,
-              away_team_goals: awayTeamGoals,
-              match_id: match.id
-            }
-          }
-        },
-        {
-          headers: {
-            Authorization: JSON.parse(localStorage.getItem("abc")).accessToken
+      .post("/api/match_predictions", {
+        data: {
+          type: "match_prediction",
+          attributes: {
+            home_team_goals: homeTeamGoals,
+            away_team_goals: awayTeamGoals,
+            match_id: match.id
           }
         }
-      )
+      })
       .then(response => {
         console.log(response);
         this.setState({ showSubmit: false });

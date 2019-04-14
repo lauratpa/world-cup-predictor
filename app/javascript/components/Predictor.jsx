@@ -11,13 +11,10 @@ class Predictor extends React.Component {
   };
 
   componentDidMount() {
+    const baseUrl = window.location.origin;
     const api = new Kitsu({
-      baseURL: "http://localhost:3000"
+      baseURL: baseUrl
     });
-
-    api.headers.Authorization = JSON.parse(
-      localStorage.getItem("abc")
-    ).accessToken;
 
     api
       .get("/api/matches")
@@ -28,7 +25,7 @@ class Predictor extends React.Component {
         if (error.response.status === 401) {
           const { userName, onUpdateCurrentUser } = this.props;
 
-          onUpdateCurrentUser(userName, null);
+          onUpdateCurrentUser(userName);
         }
       });
   }

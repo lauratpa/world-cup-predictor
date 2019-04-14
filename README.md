@@ -14,6 +14,13 @@ Create database and set database url
 Deploy
 `eb deploy env-name`
 
+Seed database
+```
+eb ssh
+cd /var/app/current/
+sudo env PATH=$PATH DATABASE_URL=$DATABASE_URL RAILS_ENV=production bundle exec rake db:seed
+```
+
 ### Other
 
 Flags by courtesy of <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a>
