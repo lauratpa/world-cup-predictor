@@ -24,8 +24,8 @@ class MatchContent extends React.Component {
       match,
       homeTeam,
       awayTeam,
-      homeTeamGoals: homeTeamGoals || "",
-      awayTeamGoals: awayTeamGoals || "",
+      homeTeamGoals: homeTeamGoals === undefined ? "" : homeTeamGoals,
+      awayTeamGoals: awayTeamGoals === undefined ? "" : awayTeamGoals,
       showSubmit: false
     };
   }

@@ -13,8 +13,8 @@ class PassiveMatchContent extends React.Component {
     this.state = {
       homeTeam,
       awayTeam,
-      homeTeamGoals: homeTeamGoals || "",
-      awayTeamGoals: awayTeamGoals || ""
+      homeTeamGoals: homeTeamGoals === undefined ? "" : homeTeamGoals,
+      awayTeamGoals: awayTeamGoals === undefined ? "" : awayTeamGoals
     };
   }
 
