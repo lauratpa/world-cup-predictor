@@ -4,12 +4,12 @@ import { Menu } from "semantic-ui-react";
 import Logout from "./Logout";
 
 const HeaderMenu = props => {
-  const { email, onUpdateCurrentUser } = props;
+  const { userName, onUpdateCurrentUser } = props;
 
   return (
     <Menu attached="top">
       <Menu.Item header>Women's World Cup Predictor</Menu.Item>
-      <Menu.Item position="right">{email}</Menu.Item>
+      <Menu.Item position="right">{userName}</Menu.Item>
       <Menu.Item>
         <Logout onUpdateCurrentUser={onUpdateCurrentUser} />
       </Menu.Item>
@@ -18,7 +18,7 @@ const HeaderMenu = props => {
 };
 
 HeaderMenu.propTypes = {
-  email: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   onUpdateCurrentUser: PropTypes.func.isRequired
 };
 

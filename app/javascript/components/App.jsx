@@ -1,31 +1,48 @@
 import React from "react";
+import axios from "axios";
 import Predictor from "./Predictor";
 import Welcome from "./Welcome";
-import { Message } from "semantic-ui-react";
 
-const accessTokenName = "abc";
+const storageName = "worldCupStorage";
 
 class App extends React.Component {
   state = {
-    storage: JSON.parse(localStorage.getItem(accessTokenName)) || {}
+    storage: JSON.parse(sessionStorage.getItem(storageName)) || {}
   };
 
-  handleUpdateCurrentUser = name => {
-    const newStorage = { name };
+  componentDidMount() {
+    this.tryToSetCurrentUser();
+  }
 
-    localStorage.setItem(accessTokenName, JSON.stringify(newStorage));
+  handleUpdateCurrentUser = name => {
+    const newStorage = { userName: name };
+
+    sessionStorage.setItem(storageName, JSON.stringify(newStorage));
     this.setState({ storage: newStorage });
+  };
+
+  tryToSetCurrentUser = () => {
+    axios
+      .get("/api/current_user", { withCredentials: true })
+      .then(response => {
+        if (response.status === 201) {
+          this.handleUpdateCurrentUser(response.data.name);
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   render() {
     const { storage } = this.state;
-    const { name } = storage;
+    const { userName } = storage;
 
-    if (name) {
+    if (userName) {
       return (
         <div>
           <Predictor
-            email={name}
+            userName={userName}
             onUpdateCurrentUser={this.handleUpdateCurrentUser}
           />
         </div>

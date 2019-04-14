@@ -13,7 +13,7 @@ class Login extends React.Component {
     const { onUpdateCurrentUser } = this.props;
 
     axios
-      .post("/api/login", {
+      .post("/login", {
         withCredentials: true,
         user: {
           email,
@@ -22,7 +22,6 @@ class Login extends React.Component {
       })
       .then(response => {
         if (response.status === 201) {
-          console.log(response);
           onUpdateCurrentUser(response.data.name);
         }
       })

@@ -28,6 +28,8 @@ Match.find_or_create_by!(home_team: england, away_team: scotland, kick_off: "201
 Match.find_or_create_by!(home_team: argentina, away_team: japan, kick_off: "2019-06-10 18:00:00 +1")
 Match.find_or_create_by!(home_team: canada, away_team: cameroon, kick_off: "2019-06-10 21:00:00 +1")
 
+Match.find_or_create_by!(home_team: canada, away_team: cameroon, kick_off: 10.minutes.from_now.utc)
+
 # Dev games
 countries = Country.all
 now = Time.now.beginning_of_hour
@@ -48,4 +50,4 @@ time_range = ((now - 2.days).to_i..(now + 2.days).to_i).to_a
   )
 end
 
-User.create!(email: "example@example.com", password: "12345", password_confirmation: "12345")
+User.create!(name: "Example User", email: "example@example.com", password: "12345", password_confirmation: "12345")

@@ -15,7 +15,7 @@ class SignUp extends React.Component {
     const { onUpdateCurrentUser } = this.props;
 
     axios
-      .post("/api/users", {
+      .post("/users", {
         user: {
           name,
           email,

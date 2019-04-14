@@ -26,22 +26,25 @@ class Predictor extends React.Component {
       })
       .catch(error => {
         if (error.response.status === 401) {
-          const { email, onUpdateCurrentUser } = this.props;
+          const { userName, onUpdateCurrentUser } = this.props;
 
-          onUpdateCurrentUser(email, null);
+          onUpdateCurrentUser(userName, null);
         }
       });
   }
 
   render() {
     const { matches } = this.state;
-    const { email, onUpdateCurrentUser } = this.props;
+    const { userName, onUpdateCurrentUser } = this.props;
 
     if (matches === null) return null;
 
     return (
       <div>
-        <HeaderMenu email={email} onUpdateCurrentUser={onUpdateCurrentUser} />
+        <HeaderMenu
+          userName={userName}
+          onUpdateCurrentUser={onUpdateCurrentUser}
+        />
         <Container>
           <MatchList matches={matches} />
         </Container>
@@ -51,7 +54,7 @@ class Predictor extends React.Component {
 }
 
 Predictor.propTypes = {
-  email: PropTypes.string.isRequired,
+  userName: PropTypes.string.isRequired,
   onUpdateCurrentUser: PropTypes.func.isRequired
 };
 
