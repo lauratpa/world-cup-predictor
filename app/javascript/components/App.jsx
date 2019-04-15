@@ -31,6 +31,9 @@ class App extends React.Component {
       })
       .catch(error => {
         console.log(error);
+        if (response.status === 401) {
+          this.handleUpdateCurrentUser(null);
+        }
       });
   };
 

@@ -5,7 +5,7 @@ class AuthenticationController < ApplicationController
     if user.authenticate(password)
       token = JsonWebToken.encode(user_id: user.id)
 
-      cookies.signed[:jwt] = {
+      cookies.encrypted[:jwt] = {
         value: token,
         httponly: true,
         expires: 1.week.from_now.utc,

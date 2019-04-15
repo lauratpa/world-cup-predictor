@@ -23,9 +23,9 @@ class Predictor extends React.Component {
       })
       .catch(error => {
         if (error.response.status === 401) {
-          const { userName, onUpdateCurrentUser } = this.props;
+          const { onUpdateCurrentUser } = this.props;
 
-          onUpdateCurrentUser(userName);
+          onUpdateCurrentUser(null);
         }
       });
   }

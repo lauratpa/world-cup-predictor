@@ -4,7 +4,12 @@ class UsersController < ApplicationController
 
     if user.persisted?
       token = JsonWebToken.encode(user_id: user.id)
-      cookies.signed[:jwt] = {value:  token, httponly: true}
+
+      cookies.encrypted[:jwt] = {
+        value: token,
+        httponly: true,
+        expires: 1.week.from_now.utc,
+      }
 
       render json: {name: user.name}, status: 201
     else
