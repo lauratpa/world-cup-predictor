@@ -47,6 +47,7 @@ group :development, :test do
   gem "standard"
   gem "pry-byebug"
   gem "pry-rails"
+  gem "thin"
 end
 
 group :development do
