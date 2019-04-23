@@ -1,6 +1,6 @@
 class AuthenticationController < ApplicationController
   def create
-    user = User.find_by!(email: email)
+    user = users_repository.find_by_email(email)
 
     if user.authenticate(password)
       token = JsonWebToken.encode(user_id: user.id)
@@ -34,5 +34,9 @@ class AuthenticationController < ApplicationController
 
   def password
     user_params[:password]
+  end
+
+  def users_repository
+    @users_repository ||= UsersRepository.new(rom)
   end
 end

@@ -40,6 +40,10 @@ gem "fast_jsonapi"
 gem "simple_command"
 gem "jwt"
 gem "rack-cors"
+gem "rom-rails"
+gem "rom-sql"
+gem "dotenv-rails"
+gem "dry-validation"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -48,6 +52,7 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "thin"
+  gem "awesome_print"
 end
 
 group :development do

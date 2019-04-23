@@ -1,6 +1,6 @@
-class CountrySerializer
+class TeamSerializer
   include FastJsonapi::ObjectSerializer
   set_key_transform :camel_lower
 
-  attributes :id, :name, :code
+  attributes :id, :name
 end
